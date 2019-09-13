@@ -17,13 +17,13 @@ app.set('view engine', 'ejs');
 
 // Middleware
 app.use(session({
-  sotre: new RedisStore({
+  store: new RedisStore({
     host: 'localhost',
     port: 6379
   }),
   secret: 'p@ssw0rd',
   resave: true,
-  saveUnitialized: true
+  saveUninitialized: true
 }));
 
 app.use(logger('dev'));
