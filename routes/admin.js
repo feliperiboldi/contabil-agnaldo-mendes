@@ -46,9 +46,7 @@ router.get('/logout', function(req, res, next) {
 });
 
 router.get('/banners', function(req, res, next) {
-    res.render('admin/banners', {
-        menus: req.menus
-    });
+    res.render('admin/banners', admin.getParams(req));
 });
 
 router.get('/noticias', function(req, res, next) {
