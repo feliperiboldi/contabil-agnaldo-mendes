@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+const admin = require('./../inc/admin');
 const users = require('./../inc/users');
 
 router.use(function(req, res, next) {
@@ -9,6 +10,11 @@ router.use(function(req, res, next) {
     } else {
         next();
     }
+});
+
+router.use(function(req, res, next) {
+    req.menus = admin.getMenus(req);
+    next();
 });
 
 router.get('/', function(req, res, next) {
@@ -40,7 +46,9 @@ router.get('/logout', function(req, res, next) {
 });
 
 router.get('/banners', function(req, res, next) {
-    res.render('admin/banners');
+    res.render('admin/banners', {
+        menus: req.menus
+    });
 });
 
 router.get('/noticias', function(req, res, next) {
