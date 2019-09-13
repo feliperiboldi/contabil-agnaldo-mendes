@@ -1,4 +1,12 @@
+const conn = require('./db');
+
 module.exports = {
+    dashboard() {
+        return new Promise((resolve, reject) => {
+            
+        });
+    },
+
     getParams(req, params) {
         return Object.assign({}, {
             menus: req.menus,
