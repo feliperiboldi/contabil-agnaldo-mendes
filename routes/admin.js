@@ -44,11 +44,11 @@ router.get('/banners', function(req, res, next) {
 });
 
 router.get('/noticias', function(req, res, next) {
-    res.render('admin/noticias');
+    res.render('admin/news');
 });
 
 router.get('/usuarios', function(req, res, next) {
-    res.render('admin/usuarios');
+    res.render('admin/users');
 });
 
 router.get('/emails', function(req, res, next) {
