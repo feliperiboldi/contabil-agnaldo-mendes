@@ -141,7 +141,12 @@
 
 <%- include('inc/footer') -%>
 
+<script src="dist/js/hcode-filereader.js"></script>
+
 <script>
+    new HcodeFilereader('#modal-create [type=file]', '#modal-create img');
+    new HcodeFilereader('#modal-update [type=file]', '#modal-update img');
+
     let formCreate = document.querySelector('#modal-create form');
     
     formCreate.addEventListener('submit', e => {
