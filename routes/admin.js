@@ -52,6 +52,14 @@ router.get('/logout', function(req, res, next) {
     res.redirect('/admin/login');
 });
 
+router.post('/banners', function(req, res, next) {
+    banners.save(req.fields, req.files).then(results => {
+        res.send(results);
+    }).catch(err => {
+        res.send(err);
+    }) 
+});
+
 router.get('/banners', function(req, res, next) {
     banners.getBanners().then(data => {
         res.render('admin/banners', admin.getParams(req, {
