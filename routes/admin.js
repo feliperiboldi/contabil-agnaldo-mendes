@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const admin = require('./../inc/admin');
+const banners = require('./../inc/banners');
 const users = require('./../inc/users');
 
 router.use(function(req, res, next) {
@@ -52,7 +53,13 @@ router.get('/logout', function(req, res, next) {
 });
 
 router.get('/banners', function(req, res, next) {
-    res.render('admin/banners', admin.getParams(req));
+    banners.getBanners().then(data => {
+        res.render('admin/banners', admin.getParams(req, {
+            data
+        }));
+    }).catch(err => {
+        console.error(err);
+    });
 });
 
 router.get('/noticias', function(req, res, next) {
