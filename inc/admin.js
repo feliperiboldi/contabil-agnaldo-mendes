@@ -3,7 +3,27 @@ const conn = require('./db');
 module.exports = {
     dashboard() {
         return new Promise((resolve, reject) => {
-            
+            conn.query(`
+            SELECT 
+                (SELECT
+                    COUNT(*)
+                    FROM tb_banners) AS nrbanners,
+                (SELECT
+                    COUNT(*)
+                    FROM tb_news) AS nrnews,
+                (SELECT
+                    COUNT(*)
+                    FROM tb_contacts) AS nrcontacts,
+                (SELECT
+                    COUNT(*)
+                    FROM tb_users) AS nrusers
+            `, (err, results) => {
+                if(err) {
+                    reject(err);
+                } else {
+                    resolve(results[0]);
+                }
+            })
         });
     },
 
@@ -11,7 +31,7 @@ module.exports = {
         return Object.assign({}, {
             menus: req.menus,
             user: req.session.user
-        }, params)
+        }, params);
     },
 
     getMenus(req) {
