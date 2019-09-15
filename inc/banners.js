@@ -20,21 +20,46 @@ module.exports = {
         return new Promise((resolve, reject) => {
             fields.photo = `images/${path.parse(files.photo.path).base}`;
 
-            conn.query(`
-                INSERT INTO tb_banners(title, subtitle, href, photo)
-                VALUES(?, ?, ?, ?)
-            `, [
+            let query, queryPhoto = '', params = [
                 fields.title,
                 fields.subtitle,
-                fields.href,
-                fields.photo
-            ], (err, results) => {
+                fields.href
+            ];
+
+            if (files.photo.name) {
+                queryPhoto = ', photo = ?';
+                params.push(fields.photo);
+            }
+
+            if(fields.id > 0) {
+                params.push(fields.id);
+
+                query = `
+                    UPDATE tb_banners
+                    SET title = ?,
+                        subtitle = ?,
+                        href = ?
+                        ${queryPhoto}
+                    WHERE id = ?
+                `;
+            } else {
+                if(!files.photo.name) {
+                    reject('É necessário enviar uma foto.');
+                }
+
+                query = `
+                    INSERT INTO tb_banners(title, subtitle, href, photo)
+                    VALUES (?, ?, ?, ?)
+                `;
+            }
+
+            conn.query(query, params, (err, results) => {
                 if(err) {
                     reject(err);
                 } else {
                     resolve(results);
                 }
             });
-        });
+         });
     }
 };
