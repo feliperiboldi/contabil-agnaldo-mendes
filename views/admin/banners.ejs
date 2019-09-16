@@ -143,67 +143,14 @@
 
 <script src="dist/js/hcode-filereader.js"></script>
 <script src="dist/js/hcode-formsave.js"></script>
+<script src="dist/js/hcode-grid.js"></script>
 
 <script>
     new HcodeFilereader('#modal-create [type=file]', '#modal-create img');
     new HcodeFilereader('#modal-update [type=file]', '#modal-update img');
 
-    let formCreate = document.querySelector('#modal-create form');
-
-    formCreate.save().then(json => {
-        window.location.reload();
-    }).catch(err => {
-        console.error(err);
-    });
-
-    let formUpdate = document.querySelector('#modal-update form');
-
-    formUpdate.save().then(json => {
-        window.location.reload();
-    }).catch(err => {
-        console.error(err);
-    });
-    
-    [...document.querySelectorAll('.btn-delete')].forEach(btn => {
-        btn.addEventListener('click', e => {
-            let tr = e.path.find(el => {
-                return(el.tagName.toUpperCase() === 'TR');
-            });
-            
-            let data = JSON.parse(tr.dataset.row);
-            if(confirm(`Deseja realmente excluir o banner ${data.title}?`)) {
-                fetch(`/admin/banners/${data.id}`, {
-                    method: 'DELETE'
-                })
-                    .then(response => response.json())
-                    .then(json => {
-                        window.location.reload();
-                    });
-            }
-        });
-    });
-
-    [...document.querySelectorAll('.btn-update')].forEach(btn => {
-        btn.addEventListener('click', e => {
-            let tr = e.path.find(el => {
-                return(el.tagName.toUpperCase() === 'TR');
-            });
-            
-            let data = JSON.parse(tr.dataset.row);
-            
-            for(let name in data) {
-                switch(name) {
-                    case 'photo':
-                        formUpdate.querySelector('img').src = '/' + data[name];
-                        break;
-                    
-                    default:
-                        let input = formUpdate.querySelector(`[name=${name}]`);
-                        if(input) input.value = data[name];
-                }
-            }
-
-            $('#modal-update').modal('show');
-        });
+    new HcodeGrid({
+        deleteUrl: '/admin/banners/${data.id}',
+        deleteMsg: 'Deseja realmente excluir o Banner ${data.title}?'
     });
 </script>
