@@ -163,6 +163,25 @@
     }).catch(err => {
         console.error(err);
     });
+    
+    [...document.querySelectorAll('.btn-delete')].forEach(btn => {
+        btn.addEventListener('click', e => {
+            let tr = e.path.find(el => {
+                return(el.tagName.toUpperCase() === 'TR');
+            });
+            
+            let data = JSON.parse(tr.dataset.row);
+            if(confirm(`Deseja realmente excluir o banner ${data.title}?`)) {
+                fetch(`/admin/banners/${data.id}`, {
+                    method: 'DELETE'
+                })
+                    .then(response => response.json())
+                    .then(json => {
+                        window.location.reload();
+                    });
+            }
+        });
+    });
 
     [...document.querySelectorAll('.btn-update')].forEach(btn => {
         btn.addEventListener('click', e => {

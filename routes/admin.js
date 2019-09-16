@@ -60,13 +60,21 @@ router.post('/banners', function(req, res, next) {
     }) 
 });
 
+router.delete('/banners/:id', function(req, res, next) {
+    banners.delete(req.params.id).then(results => {
+        res.send(results);
+    }).catch(err => {
+        res.send(err);
+    });
+});
+
 router.get('/banners', function(req, res, next) {
     banners.getBanners().then(data => {
         res.render('admin/banners', admin.getParams(req, {
             data
         }));
     }).catch(err => {
-        console.error(err);
+        res.send(err);
     });
 });
 
