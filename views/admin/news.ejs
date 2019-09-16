@@ -34,17 +34,19 @@
                   <th style="min-width: 134px;">Ações</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>1.</td>
+              <tbody
+                <% data.forEach((row) => { %>
+                <tr data-row="<%= JSON.stringify(row); %>"">
+                  <td><%= row.id %></td>
                   <td><img src="dist/img/boxed-bg.jpg" alt="" style="height: 18px;"></td>
-                  <td>Update software</td>
-                  <td>Diuretics paradis num copo é motivis de denguis.</td>
-                  <td>Felipe Riboldi</td>
+                  <td><%= row.title %></td>
+                  <td><%= row.subtitle %></td>
+                  <td><%= row.name %></td>
                   <td><button type="button" class="btn btn-xs btn-info btn-update" data-toggle="modal" data-target="#modal-update"><i
                         class="fa fa-pencil"></i> Editar</button>&nbsp;<button type="button" class="btn btn-xs btn-danger btn-delete"><i
                         class="fa fa-trash"></i> Excluir</button></td>
                 </tr>
+                <% }); %>
               </tbody>
             </table>
           </div>
@@ -64,7 +66,7 @@
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-              <h4 class="modal-title">Novo Menu</h4>
+              <h4 class="modal-title">Nova Notícia</h4>
             </div>
             <div class="modal-body">
               <div class="form-group">
