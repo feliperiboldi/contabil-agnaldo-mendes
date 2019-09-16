@@ -151,6 +151,18 @@
 
     new HcodeGrid({
         deleteUrl: '/admin/banners/${data.id}',
-        deleteMsg: 'Deseja realmente excluir o Banner ${data.title}?'
+        deleteMsg: 'Deseja realmente excluir o banner ${data.title}?',
+        onUpdateLoad: (form, name, data) => {
+            let input = form.querySelector(`[name=${name}]`);
+
+            switch(name) {
+                case 'photo':
+                    form.querySelector('img').src = '/' + data[name];
+                    break;
+                
+                default:
+                    if (input) input.value = data[name];
+            }
+        }
     });
 </script>

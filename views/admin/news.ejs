@@ -61,7 +61,8 @@
     <div class="modal fade" id="modal-create">
       <div class="modal-dialog">
         <div class="modal-content" style="border-top: 3px solid #00a65a;">
-          <form method="post">
+          <form action="/admin/noticias" method="post">
+            <input type="hidden" name="author" value="<%= user.id %>">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -74,12 +75,12 @@
                 <input type="text" class="form-control" id="inputTitleCreate" name="title">
               </div>
               <div class="form-group">
-                <label for="inputDescriptionCreate">Descrição</label>
-                <textarea class="form-control" id="inputDescriptionCreate" name="description"></textarea>
+                <label for="inputSubtitleCreate">Sutbítulo</label>
+                <textarea class="form-control" id="inputSubtitleCreate" name="subtitle"></textarea>
               </div>
               <div class="form-group">
-                <label for="inputPriceCreate">Preço</label>
-                <input type="number" class="form-control" id="inputPriceCreate" name="price">
+                <label for="inputTextCreate">Texto</label>
+                <textarea rows="6" class="form-control" id="inputTextCreate" name="text"></textarea>
               </div>
               <div class="form-group">
                 <label for="inputPhotoCreate">Foto</label>
@@ -101,7 +102,7 @@
     <div class="modal fade" id="modal-update">
       <div class="modal-dialog">
         <div class="modal-content" style="border-top: 3px solid #00c0ef;">
-          <form method="post">
+          <form action="/admin/noticias" method="post">
             <input type="hidden" name="id">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -140,3 +141,17 @@
     </div>
 
 <%- include('inc/footer') -%> 
+
+<script src="dist/js/hcode-filereader.js"></script>
+<script src="dist/js/hcode-formsave.js"></script>
+<script src="dist/js/hcode-grid.js"></script>
+
+<script>
+    new HcodeFilereader('#modal-create [type=file]', '#modal-create img');
+    new HcodeFilereader('#modal-update [type=file]', '#modal-update img');
+
+    new HcodeGrid({
+        deleteUrl: '/admin/noticias/${data.id}',
+        deleteMsg: 'Deseja realmente excluir a Notícia ${data.title}?'
+    });
+</script>
