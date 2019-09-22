@@ -5,7 +5,7 @@ module.exports = {
     getNews() {
         return new Promise((resolve, reject) => {
             conn.query(`
-                SELECT tb_news.id, tb_news.title, tb_news.subtitle, tb_news.photo, tb_users.name
+                SELECT tb_news.id, tb_news.title, tb_news.subtitle, tb_news.text, tb_news.photo, tb_users.name
                 FROM tb_news
                 INNER JOIN tb_users ON tb_news.author = tb_users.id
                 ORDER BY tb_news.title
@@ -26,7 +26,8 @@ module.exports = {
             let query, queryPhoto = '', params = [
                 fields.title,
                 fields.subtitle,
-                fields.text
+                fields.text,
+                fields.author
             ];
 
             if(!files.photo.name) {
@@ -41,13 +42,12 @@ module.exports = {
                     UPDATE tb_news
                     SET title = ?,
                         subtitle = ?,
-                        text = ?
+                        text = ?,
+                        author = ?
                         ${queryPhoto}
                     WHERE id = ?
                 `
             } else {
-                params.push(fields.author);
-
                 if(!files.photo.name) {
                     reject('É necessário enviar uma foto.');
                 }

@@ -58,7 +58,7 @@ router.post('/banners', function(req, res, next) {
         res.send(results);
     }).catch(err => {
         res.send(err);
-    }) 
+    });
 });
 
 router.delete('/banners/:id', function(req, res, next) {
@@ -79,19 +79,27 @@ router.get('/banners', function(req, res, next) {
     });
 });
 
-router.get('/noticias', function(req, res, next) {
-    news.getNews().then(data => {
-        res.render('admin/news', admin.getParams(req, {
-            data
-        }));
+router.post('/noticias', function(req, res, next) {
+    news.save(req.fields, req.files).then(results => {
+        res.send(results);
     }).catch(err => {
         res.send(err);
     });
 });
 
-router.post('/noticias', function(req, res, next) {
-    news.save(req.fields, req.files).then(results => {
+router.delete('/noticias/:id', function(req, res, next) {
+    news.delete(req.params.id).then(results => {
         res.send(results);
+    }).catch(err => {
+        res.send(err);
+    });
+});
+
+router.get('/noticias', function(req, res, next) {
+    news.getNews().then(data => {
+        res.render('admin/news', admin.getParams(req, {
+            data
+        }));
     }).catch(err => {
         res.send(err);
     });
