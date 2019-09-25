@@ -62,24 +62,26 @@
     <main class="main-content">
         <section class="carousel">
             <div class="owl-carousel owl-theme owl-home">
-                <div class="item carousel-image" style="background-image: url('images/carousel.jpg')">
+                <% banners.forEach((row) => { %>
+                <div class="item carousel-image" style="background-image: url('<%= row.bPhoto %>')">
                     <div class="overlay"></div>
                     <div class="container">
                         <div class="carousel-content">
                             <h1 class="title-carousel text-center">
-                                Sua empresa em boas mãos
+                                <%= row.bTitle %>
                             </h1>
                             <p class="subtitle-carousel text-center">
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut risus sit amet nisl facilisis aliquam. Aliquam erat volutpat.
+                                <%= row.bSubtitle %>
                             </p>
                             <div class="d-flex justify-content-center">
-                                <a href="#" class="btn btn-carousel _pt15 _pb15">
+                                <a href="<%= row.bHref %>" class="btn btn-carousel _pt15 _pb15">
                                     Conheça nosso Trabalho
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
+                <% }); %>
             </div>
         </section>
         
@@ -178,23 +180,26 @@
             <div class="container">
                 <h2 class="title-section-1 _pb40">Notícias <span>Recentes</span></h2>
                 <div class="owl-carousel owl-theme owl-news">
+                    <% news.forEach((row) => { %>
                     <div class="item">
                         <a href="#" class="news-link">
                             <figure class="_mb10">
                                 <div class="overlay">
                                     <i class="fa fa-plus-circle"></i>
                                 </div>
-                                <img src="images/carousel.jpg" alt="">
+                                <img src="<%= row.nPhoto %>" alt="">
                             </figure>
                             <div class="news-content">
                                 <h3 class="title-news text-justify">
-                                  Divulgada Nota Conjunta nº 01/2019 SEPRT/RFB/SED sobre a simplificação do eSocial</h3>
+                                    <%= row.nTitle %>
+                                </h3>
                                 <p class="subtitle-news text-justify">
-                                    Secretarias Especiais do Ministério da Economia esclarecem pontos sobre a forma de envio das informações
+                                    <%= row.nSubtitle %>
                                 </p>
                             </div>
                         </a>
                     </div>
+                    <% }); %>
                 </div>
             </div>
         </section>
