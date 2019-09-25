@@ -31,6 +31,7 @@
                   <th>Título</th>
                   <th>Subtítulo</th>
                   <th>Texto</th>
+                  <th>Autor</th>
                   <th style="min-width: 134px;">Ações</th>
                 </tr>
               </thead>
@@ -42,6 +43,7 @@
                   <td><%= row.title %></td>
                   <td><%= row.subtitle %></td>
                   <td><%= row.text %></td>
+                  <td><%= row.author %></td>
                   <td><button type="button" class="btn btn-xs btn-info btn-update"><i
                         class="fa fa-pencil"></i> Editar</button>&nbsp;<button type="button" class="btn btn-xs btn-danger btn-delete"><i
                         class="fa fa-trash"></i> Excluir</button></td>
@@ -62,6 +64,7 @@
       <div class="modal-dialog">
         <div class="modal-content" style="border-top: 3px solid #00a65a;">
           <form action="/admin/noticias" method="post">
+            <input type="hidden" id="inputAuthorCreate" name="author" value="<%= parseInt(user.id) %>">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -102,6 +105,7 @@
       <div class="modal-dialog">
         <div class="modal-content" style="border-top: 3px solid #00c0ef;">
           <form action="/admin/noticias" method="post">
+            <input type="hidden" id="inputAuthorUpdate" name="author" value="<%= parseInt(user.id) %>">
             <input type="hidden" name="id">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -149,6 +153,8 @@
     new HcodeFilereader('#modal-create [type=file]', '#modal-create img');
     new HcodeFilereader('#modal-update [type=file]', '#modal-update img');
 
+    let user = parseInt(document.querySelector('#inputAuthorUpdate').value);
+
     new HcodeGrid({
     deleteUrl: '/admin/noticias/${data.id}',
     deleteMsg: 'Deseja realmente excluir o menu ${data.title}?',
@@ -161,6 +167,7 @@
                     break;
 
                 default:
+                    data.author = user;
                     if(input) input.value = data[name];
             }
         }

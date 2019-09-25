@@ -81,7 +81,7 @@ router.get('/banners', function(req, res, next) {
 
 router.post('/noticias', function(req, res, next) {
     news.save(req.fields, req.files).then(results => {
-        res.send(results);
+        res.send(req.body);
     }).catch(err => {
         res.send(err);
     });

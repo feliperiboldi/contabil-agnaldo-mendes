@@ -5,7 +5,9 @@ module.exports = {
     getNews() {
         return new Promise((resolve, reject) => {
             conn.query(`
-                SELECT * FROM tb_news ORDER BY title
+                SELECT tb_news.id, tb_news.title, tb_news.subtitle, tb_news.text, tb_news.photo , tb_users.NAME AS author 
+                FROM tb_news INNER JOIN tb_users ON tb_news.author = tb_users.id
+                ORDER BY title
             `, (err, results) => {
                 if(err) {
                     reject(err);
@@ -23,7 +25,8 @@ module.exports = {
             let query, queryPhoto = '', params = [
                 fields.title,
                 fields.subtitle,
-                fields.text
+                fields.text,
+                fields.author
             ];
 
             if (files.photo.name) {
@@ -38,7 +41,8 @@ module.exports = {
                     UPDATE tb_news
                     SET title = ?,
                         subtitle = ?,
-                        text = ?
+                        text = ?,
+                        author = ?
                         ${queryPhoto}
                     WHERE id = ?
                 `;
@@ -48,8 +52,8 @@ module.exports = {
                 }
 
                 query = `
-                    INSERT INTO tb_news(title, subtitle, text, photo)
-                    VALUES (?, ?, ?, ?)
+                    INSERT INTO tb_news(title, subtitle, text, author, photo)
+                    VALUES (?, ?, ?, ?, ?)
                 `;
             }
 
