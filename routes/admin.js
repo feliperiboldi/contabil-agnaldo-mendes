@@ -106,7 +106,13 @@ router.get('/noticias', function(req, res, next) {
 });
 
 router.get('/usuarios', function(req, res, next) {
-    res.render('admin/users');
+    users.getUsers().then(data => {
+        res.render('admin/users', admin.getParams(req, {
+            data
+        }));
+    }).catch(err => {
+        res.send(err);
+    });
 });
 
 router.get('/emails', function(req, res, next) {
