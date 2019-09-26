@@ -27,9 +27,16 @@ class HcodeGrid {
             btnUpdate: 'btn-update',
             btnDelete: 'btn-delete',
             onUpdateLoad: (form, name, data) => {
-        
                 let input = form.querySelector(`[name=${name}]`);
-                if(input) input.value = data[name];
+
+                switch(name) {
+                    case 'photo':
+                        form.querySelector('img').src = '/' + data[name];
+                        break;
+                    
+                    default:
+                        if(input) input.value = data[name];
+                }
             }
         }, configs);
 

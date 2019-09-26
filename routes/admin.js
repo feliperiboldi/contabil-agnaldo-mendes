@@ -110,7 +110,7 @@ router.post('/usuarios', function(req, res, next) {
         res.send(results);
     }).catch(err => {
         res.send(err);
-    })
+    });
 });
 
 router.post('/usuarios/mudar-senha', function(req, res, next) {
@@ -122,7 +122,7 @@ router.post('/usuarios/mudar-senha', function(req, res, next) {
 });
 
 router.delete('/usuarios/:id', function(req, res, next) {
-    users.delete(req.param.id).then(results => {
+    users.delete(req.params.id).then(results => {
         res.send(results);
     }).catch(err => {
         res.send(err);

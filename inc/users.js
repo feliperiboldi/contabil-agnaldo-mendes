@@ -1,4 +1,5 @@
 const conn = require('./db');
+const path = require('path');
 
 module.exports = {
     render(req, res, error) {
@@ -15,14 +16,14 @@ module.exports = {
             `, [
                 email
             ], (err, results) => {
-                if(err) {
+                if (err) {
                     reject(err);
                 } else {
-                    if(!results.length > 0) {
+                    if (!results.length > 0) {
                         reject('Usuário ou senha incorretos.');
                     } else {
                         let row = results[0];
-                        if(row.password !== password) {
+                        if (row.password !== password) {
                             reject('Usuário ou senha incorretos.');
                         } else {
                             resolve(row);
@@ -38,7 +39,7 @@ module.exports = {
             conn.query(`
                 SELECT * FROM tb_users ORDER BY name
             `, (err, results) => {
-                if(err) {
+                if (err) {
                     reject(err);
                 } else {
                     resolve(results);
@@ -55,13 +56,13 @@ module.exports = {
                 fields.name,
                 fields.email
             ];
-
+            
             if (files.photo.name) {
                 queryPhoto = ', photo = ?';
                 params.push(fields.photo);
             }
 
-            if(fields.id > 0) {
+            if (fields.id > 0) {
                 params.push(fields.id);
 
                 query = `
@@ -77,21 +78,21 @@ module.exports = {
                 }
 
                 query = `
-                    INSERT INTO tb_users(name, email, password, photo)
+                    INSERT INTO tb_users(name, email, photo, password)
                     VALUES (?, ?, ?, ?)
                 `;
 
                 params.push(fields.password);
             }
 
-            conn.query(query, params, (err, results) => {
-                if(err) {
+            conn.query(query , params, (err, results) => {
+                if (err) {
                     reject(err);
                 } else {
                     resolve(results);
                 }
             });
-         });
+        });
     },
 
     delete(id) {
@@ -101,7 +102,7 @@ module.exports = {
             `, [
                 id
             ], (err, results) => {
-                if(err) {
+                if (err) {
                     reject(err);
                 } else {
                     resolve(results);
@@ -125,8 +126,8 @@ module.exports = {
                     req.fields.password,
                     req.fields.id
                 ], (err, results) => {
-                    if(err) {
-                        reject(err);
+                    if (err) {
+                        reject(err.message);
                     } else {
                         resolve(results);
                     }
@@ -134,4 +135,4 @@ module.exports = {
             }
         });
     }
-};
+}
