@@ -59,7 +59,7 @@ module.exports = {
 
             {
                 text: 'Usuários',
-                href: '/admin/users',
+                href: '/admin/usuarios',
                 icon: 'users',
                 active: false
             },
