@@ -38,9 +38,19 @@
                   <td><%= row.id %></td>
                   <td><%= row.name %></td>
                   <td><%= row.email %></td>
-                  <td><button type="button" class="btn btn-xs btn-info btn-update"><i
-                        class="fa fa-pencil"></i> Editar</button>&nbsp;<button type="button" class="btn btn-xs btn-danger btn-delete"><i
-                        class="fa fa-trash"></i> Excluir</button></td>
+                  <td>
+                    <button type="button" class="btn btn-xs btn-info btn-update">
+                      <i class="fa fa-pencil"></i> Editar
+                    </button>
+                    &nbsp;
+                    <button type="button" class="btn btn-xs btn-warning">
+                      <i class="fa fa-lock"></i> Alterar Senha
+                    </button>
+                    &nbsp;
+                    <button type="button" class="btn btn-xs btn-danger btn-delete">
+                      <i class="fa fa-trash"></i> Excluir
+                    </button>
+                  </td>
                 </tr>
                 <% }); %>
               </tbody>
@@ -53,6 +63,39 @@
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+
+    <div class="modal fade" id="modal-update-password">
+        <div class="modal-dialog">
+            <div class="modal-content" style="border-top: 3px solid #f39c12;">
+                <form method="post" action="/admin/usuarios/mudar-senha">
+                    <input type="hidden" name="id">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Alterar Senha</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="inputPassword">Nova Senha</label>
+                            <input type="password" class="form-control" id="inputPassword" name="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPasswordConfirm">Confirmar Senha</label>
+                            <input type="password" class="form-control" id="inputPasswordConfirm" name="passwordConfirm">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-warning">Salvar</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 
     <div class="modal fade" id="modal-create">
       <div class="modal-dialog">
@@ -71,15 +114,11 @@
               </div>
               <div class="form-group">
                 <label for="inputDescriptionCreate">E-mail</label>
-                <input type="text" class="form-control" id="inputEmailCreate" name="email">
+                <input type="email" class="form-control" id="inputEmailCreate" name="email">
               </div>
               <div class="form-group">
                 <label for="inputPriceCreate">Senha</label>
                 <input type="password" class="form-control" id="inputPasswordCreate" name="password">
-              </div>
-              <div class="form-group">
-                <label for="inputPriceCreate">Confirmar Senha</label>
-                <input type="password" class="form-control" id="inputPasswordConfirmCreate" name="passwordConfirm">
               </div>
               <div class="form-group">
                 <label for="inputPhotoCreate">Foto</label>
@@ -101,26 +140,22 @@
     <div class="modal fade" id="modal-update">
       <div class="modal-dialog">
         <div class="modal-content" style="border-top: 3px solid #00c0ef;">
-          <form action="/admin/banners" method="post">
+          <form action="/admin/usuarios" method="post">
             <input type="hidden" name="id">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-              <h4 class="modal-title">Editar Banner</h4>
+              <h4 class="modal-title">Editar Usuário</h4>
             </div>
             <div class="modal-body">
               <div class="form-group">
-                <label for="inputTitleUpdate">Título</label>
-                <input type="text" class="form-control" id="inputTitleUpdate" name="title">
+                <label for="inputTitleUpdate">Nome</label>
+                <input type="text" class="form-control" id="inputNameUpdate" name="name">
               </div>
               <div class="form-group">
-                <label for="inputDescriptionUpdate">Subtítulo</label>
-                <textarea class="form-control" id="inputSubtitleUpdate" name="subtitle"></textarea>
-              </div>
-              <div class="form-group">
-                <label for="inputPriceUpdate">Link</label>
-                <input type="text" class="form-control" id="inputHrefUpdate" name="href">
+                <label for="inputDescriptionUpdate">E-mail</label>
+                <input type="email" class="form-control" id="inputEmailUpdate" name="email">
               </div>
               <div class="form-group">
                 <label for="inputPhotoUpdate">Foto</label>
@@ -148,9 +183,9 @@
 <script>
     new HcodeFilereader('#modal-create [type=file]', '#modal-create img');
     new HcodeFilereader('#modal-update [type=file]', '#modal-update img');
-
+    
     new HcodeGrid({
-        deleteUrl: '/admin/usuarios/${data.id}',
+        deleteUrl: '/admin/usuario/${data.id}',
         deleteMsg: 'Deseja realmente excluir o usuário ${data.name}?',
         onUpdateLoad: (form, name, data) => {
             let input = form.querySelector(`[name=${name}]`);
@@ -161,8 +196,23 @@
                     break;
                 
                 default:
-                    if (input) input.value = data[name];
+                    if(input) input.value = data[name];
             }
+        },
+        listeners: {
+            buttonClick: (btn, data, e) => {
+                document.querySelector('#modal-update-password form [name=id]').value = data.id;
+                $('#modal-update-password').modal('show');
+            }
+        }
+    });
+
+    document.querySelector('#modal-update-password form').save({
+        success: () => {
+            window.location.reload();
+        },
+        failure: err => {
+            alert(err);
         }
     });
 </script>

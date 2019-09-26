@@ -105,6 +105,30 @@ router.get('/noticias', function(req, res, next) {
     })
 });
 
+router.post('/usuarios', function(req, res, next) {
+    users.save(req.fields, req.files).then(results => {
+        res.send(results);
+    }).catch(err => {
+        res.send(err);
+    })
+});
+
+router.post('/usuarios/mudar-senha', function(req, res, next) {
+    users.changePassword(req).then(results => {
+        res.send(results);
+    }).catch(err => {
+        res.send({ error: err });
+    });
+});
+
+router.delete('/usuarios/:id', function(req, res, next) {
+    users.delete(req.param.id).then(results => {
+        res.send(results);
+    }).catch(err => {
+        res.send(err);
+    });
+});
+
 router.get('/usuarios', function(req, res, next) {
     users.getUsers().then(data => {
         res.render('admin/users', admin.getParams(req, {

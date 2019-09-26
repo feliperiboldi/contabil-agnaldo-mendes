@@ -45,5 +45,93 @@ module.exports = {
                 }
             });
         });
+    },
+
+    save(fields, files) {
+        return new Promise((resolve, reject) => {
+            fields.photo = `images/${path.parse(files.photo.path).base}`;
+
+            let query, queryPhoto = '', params = [
+                fields.name,
+                fields.email
+            ];
+
+            if (files.photo.name) {
+                queryPhoto = ', photo = ?';
+                params.push(fields.photo);
+            }
+
+            if(fields.id > 0) {
+                params.push(fields.id);
+
+                query = `
+                    UPDATE tb_users
+                    SET name = ?,
+                        email = ?
+                        ${queryPhoto}
+                    WHERE id = ?
+                `;
+            } else {
+                if(!files.photo.name) {
+                    reject('É necessário enviar uma foto.');
+                }
+
+                query = `
+                    INSERT INTO tb_users(name, email, password, photo)
+                    VALUES (?, ?, ?, ?)
+                `;
+
+                params.push(fields.password);
+            }
+
+            conn.query(query, params, (err, results) => {
+                if(err) {
+                    reject(err);
+                } else {
+                    resolve(results);
+                }
+            });
+         });
+    },
+
+    delete(id) {
+        return new Promise((resolve, reject) => {
+            conn.query(`
+                DELETE FROM tb_users WHERE id = ?
+            `, [
+                id
+            ], (err, results) => {
+                if(err) {
+                    reject(err);
+                } else {
+                    resolve(results);
+                }
+            });
+        });
+    },
+
+    changePassword(req) {
+        return new Promise((resolve, reject) => {
+            if(!req.fields.password) {
+                reject('Preencha a senha.');
+            } else if(req.fields.password !== req.fields.passwordConfirm) {
+                reject('Confirme a senha corretamente.');
+            } else {
+                conn.query(`
+                    UPDATE tb_users
+                    SET password = ?
+                    WHERE id = ?
+                `, [
+                    req.fields.password,
+                    req.fields.id
+                ], (err, results) => {
+                    if(err) {
+                        reject(err);
+                    } else {
+                        resolve(results);
+                    }
+                });
+            }
+        });
     }
 };
