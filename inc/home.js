@@ -1,6 +1,21 @@
 const conn = require('./db');
 
 module.exports = {
+    render(req, res, error, success) {
+        this.getData().then(data => {
+            res.render('index', {
+                title: 'Contábil Agnaldo Mendes',
+                banners: data[0],
+                news: data[1],
+                body: req.body,
+                error,
+                success
+            })
+        }).catch(err => {
+            res.send(err);
+        });
+    },
+
     getData() {
         return new Promise((resolve, reject) => {
             conn.query(`

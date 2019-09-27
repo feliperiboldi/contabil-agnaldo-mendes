@@ -5,23 +5,15 @@ const home = require('./../inc/home');
 const contacts = require('./../inc/contacts');
 
 router.get('/', function(req, res, next) {
-    home.getData().then(data => {
-        res.render('index', {
-            banners: data[0],
-            news: data[1]
-        })
-    }).catch(err => {
-        res.send(err);
-    });
+    home.render(req, res, null, null);
 });
 
-router.post('/contato', function(req, res, next) {
-    contacts.save(req.body).then(results => {
-        req.body = {};
-        contacts.render(req, res, null, 'Sua mensagem foi enviada.');
+router.post('/enviar-mensagem', function(req, res, next) {
+    contacts.save(req.fields).then(results => {
+        home.render(req, res, null, 'Sua mensagem foi enviada!');
     }).catch(err => {
-        res.send(err);
-    })
+        home.render(req, res, err.message, null);
+    });
 });
 
 module.exports = router;
