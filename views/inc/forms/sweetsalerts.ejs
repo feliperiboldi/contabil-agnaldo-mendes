@@ -1,13 +1,23 @@
-<!-- <% if (typeof error === 'string') { %>
-    <%
-        swal(<%= error %>, "error")
-    %>
-<% } %>
-    
 <% if (typeof success === 'string') { %>
-    <%
-        swal(<%= success %>, "success")
-    %>
-<% } %> -->
+    <% var success = success %>
+    <script>
+        var success = '<%= success %>'
+        
+        Swal.fire({
+            title: success,
+            type: 'success'
+        });
+    </script>
+<% } %>
 
-<% if (typeof success === 'string') swal(success, "success") %>
+<% if (typeof error === 'string') { %>
+    <% var error = error %>
+    <script>
+        var error = '<%= error %>'
+        
+        Swal.fire({
+            title: error,
+            type: 'error'
+        });
+    </script>
+<% } %>

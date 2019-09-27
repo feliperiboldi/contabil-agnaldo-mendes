@@ -1,14 +1,6 @@
 const conn = require('./db');
 
 module.exports = {
-    render(req, res, error, success) {
-        res.render('index', {
-            body: req.body,
-            error,
-            success
-        });
-    },
-
     save(fields) {
         return new Promise((resolve, reject) => {
             conn.query(`
