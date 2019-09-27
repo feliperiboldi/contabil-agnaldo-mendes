@@ -5,6 +5,7 @@ const admin = require('./../inc/admin');
 const banners = require('./../inc/banners');
 const news = require('./../inc/news');
 const users = require('./../inc/users');
+const contacts = require('./../inc/contacts');
 
 router.use(function(req, res, next) {
     if(['/login'].indexOf(req.url) === -1 && !req.session.user) {
@@ -139,8 +140,22 @@ router.get('/usuarios', function(req, res, next) {
     });
 });
 
+router.delete('/emails/:id', function(req, res, next) {
+    contacts.delete(req.params.id).then(results => {
+        res.send(results);
+    }).catch(err => {
+        res.send(err);
+    });
+});
+
 router.get('/emails', function(req, res, next) {
-    res.render('admin/emails');
+    contacts.getContacts().then(data => {
+        res.render('admin/contacts', admin.getParams(req, {
+            data
+        }));
+    }).catch(err => {
+        res.send(err);
+    });
 });
 
 module.exports = router;
