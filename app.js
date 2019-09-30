@@ -11,6 +11,11 @@ const indexRouter = require('./routes/index');
 const adminRouter = require('./routes/admin');
 
 const app = express();
+const port = process.env.PORT || 3000;
+
+app.listen(port, function() {
+  console.log('Umbler listening on port %s', port);
+});
 
 app.use(function(req, res, next) {
   if(req.method === 'POST') {
