@@ -2,10 +2,21 @@ const express = require('express');
 const router = express.Router();
 
 const home = require('./../inc/home');
+const news = require('./../inc/news');
 const contacts = require('./../inc/contacts');
 
 router.get('/', function(req, res, next) {
     home.render(req, res, null, null);
+});
+
+router.get('/noticias/:id', function(req, res, next) {
+    news.getNewsById(req.params.id).then(data => {
+        res.render('news', {
+            data
+        });
+    }).catch(err => {
+        res.send(err);
+    });
 });
 
 router.post('/enviar-mensagem', function(req, res, next) {

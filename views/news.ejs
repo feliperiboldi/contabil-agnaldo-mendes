@@ -1,0 +1,36 @@
+<%- include('inc/header') -%>
+    <main class="main-content">
+        <% data.forEach((row) => { %>
+        <article class="news">
+            <div class="news-image" style="background-image: url('/<%= row.photo %>')">
+                <div class="overlay"></div>
+                <div class="container">
+                    <div class="news-banner-content">
+                        <h1 class="title-news-banner">
+                            <%= row.title %>
+                        </h1>
+                        <p class="subtitle-news-banner">
+                            <%= row.subtitle %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="news-content _pt50 _pb50">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="/<%= row.photo %>" alt="<%= row.title %>">
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-news">
+                                <%= row.text %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+    <% }); %>
+<%- include('inc/footer') -%>

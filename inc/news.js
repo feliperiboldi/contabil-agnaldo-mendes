@@ -18,6 +18,24 @@ module.exports = {
         });
     },
 
+    getNewsById(id) {
+        return new Promise((resolve, reject) => {
+            conn.query(`
+                SELECT tb_news.id, tb_news.title, tb_news.subtitle, tb_news.text, tb_news.photo , tb_users.NAME AS author 
+                FROM tb_news INNER JOIN tb_users ON tb_news.author = tb_users.id
+                WHERE tb_news.id = ?
+            `, [
+                id
+            ], (err, results) => {
+                if(err) {
+                    reject(err);
+                } else {
+                    resolve(results);
+                }
+            })
+        });
+    },
+
     save(fields, files) {
         return new Promise((resolve, reject) => {
             fields.photo = `images/${path.parse(files.photo.path).base}`;

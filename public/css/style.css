@@ -30,6 +30,15 @@ html, body {
   color: #008c74;
 }
 
+.title-news-banner {
+  font-family: "Oswald";
+  font-weight: 400;
+  font-size: 3em;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+  color: #f3f3f3;
+}
+
 .title-footer {
   font-family: "Poppins";
   font-weight: 600;
@@ -76,6 +85,13 @@ html, body {
   font-weight: 400;
   font-size: 0.9em;
   color: #333333;
+}
+
+.subtitle-news-banner {
+  font-family: "Poppins";
+  font-weight: 300;
+  font-size: 1.2em;
+  color: #f3f3f3;
 }
 
 /* Menu */
@@ -548,6 +564,39 @@ html, body {
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   width: 18px !important;
+}
+
+.news-image {
+  width: 100%;
+  height: 60vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+
+.news-image .overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  background: -webkit-gradient(linear, left top, right top, from(rgba(0, 140, 116, 0.75)), to(rgba(0, 76, 102, 0.9)));
+  background: linear-gradient(to right, rgba(0, 140, 116, 0.75) 0%, rgba(0, 76, 102, 0.9) 100%);
+}
+
+.news-banner-content {
+  position: relative;
+  z-index: 10;
 }
 
 /* Rodapé */
