@@ -82,7 +82,7 @@
               </div>
               <div class="form-group">
                 <label for="inputTextCreate">Texto</label>
-                <textarea rows="6" class="form-control ckeditor" id="inputTextCreate" name="text"></textarea>
+                <textarea rows="6" class="form-control" id="inputTextCreate" name="text"></textarea>
               </div>
               <div class="form-group">
                 <label for="inputPhotoCreate">Foto</label>
@@ -123,7 +123,7 @@
                 <textarea class="form-control" id="inputSubtitleUpdate" name="subtitle"></textarea>
               </div>
               <div class="form-group">
-                <label for="inputTextUpdate">Link</label>
+                <label for="inputTextUpdate">Texto</label>
                 <textarea rows="6" class="form-control" id="inputTextUpdate" name="text"></textarea>
               </div>
               <div class="form-group">
@@ -165,7 +165,7 @@
                 case 'photo':
                     form.querySelector('img').src = '/' + data[name];
                     break;
-
+                    
                 default:
                     data.author = user;
                     if(input) input.value = data[name];

@@ -23,7 +23,7 @@ module.exports = {
             conn.query(`
                 SELECT tb_news.id, tb_news.title, tb_news.subtitle, tb_news.text, tb_news.photo , tb_users.NAME AS author 
                 FROM tb_news INNER JOIN tb_users ON tb_news.author = tb_users.id
-                WHERE tb_news.id = ?
+                WHERE tb_news.id = ?;
             `, [
                 id
             ], (err, results) => {
@@ -47,7 +47,7 @@ module.exports = {
                 fields.author
             ];
 
-            if (files.photo.name) {
+            if(files.photo.name) {
                 queryPhoto = ', photo = ?';
                 params.push(fields.photo);
             }

@@ -19,13 +19,39 @@
             <div class="news-content _pt50 _pb50">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6">
-                            <img src="/<%= row.photo %>" alt="<%= row.title %>">
+                        <div class="col-md-8">
+                            <div class="news-content">
+                                <img src="/<%= row.photo %>" alt="<%= row.title %>" class="img-fluid img-news">
+
+                                <pre class="text-news _pt25">
+                                    <%= row.text %>
+                                </pre>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <p class="text-news">
-                                <%= row.text %>
-                            </p>
+
+                        <div class="col-md-4">
+                            <section class="">
+                                <h2 class="title-section-1">Notícias <span>Relacionadas</span></h2>
+
+                                <div class="item">
+                                    <a href="/noticias/<%= row.nId %>" class="news-link">
+                                        <figure class="_mb10">
+                                            <div class="overlay">
+                                                <i class="fa fa-plus-circle"></i>
+                                            </div>
+                                            <img src="<%= row.nPhoto %>" alt="">
+                                        </figure>
+                                        <div class="news-content">
+                                            <h3 class="title-news text-justify">
+                                                <%= row.nTitle %>
+                                            </h3>
+                                            <p class="subtitle-news text-justify">
+                                                <%= row.nSubtitle %>
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </section>
                         </div>
                     </div>
                 </div>

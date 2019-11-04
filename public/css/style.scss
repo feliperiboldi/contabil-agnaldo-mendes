@@ -568,6 +568,16 @@ html, body { margin: 0; padding: 0; }
     z-index: 10;
 }
 
+.text-news {
+    font: {
+        family: $font-first;
+        weight: 400;
+        size: 0.9; 
+    }
+    color: $color-4;
+    white-space: pre-wrap;
+}
+
 /* Rodapé */
 .main-footer {
     background-color: $color-2;
