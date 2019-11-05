@@ -10,13 +10,22 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/noticias/:id', function(req, res, next) {
-    news.getNewsById(req.params.id).then(data => {
-        res.render('news', {
-            data
+    let data = [];
+
+    news.getNewsById(req.params.id).then(results => {
+        data.push(results);
+        news.getNewsRelated(req.params.id).then(relatedResults => {
+            data.push(relatedResults);
+            res.render('news', {
+                news: data[0],
+                newsRelated: data[1]
+            });
+        }).catch(err => {
+            res.send(err);
         });
     }).catch(err => {
         res.send(err);
-    });
+    });    
 });
 
 router.post('/enviar-mensagem', function(req, res, next) {

@@ -8,10 +8,25 @@ html, body {
 .title-carousel {
   font-family: "Oswald";
   font-weight: 400;
-  font-size: 3.5em;
+  font-size: 3em;
   text-transform: uppercase;
   letter-spacing: 7px;
   color: #f3f3f3;
+}
+
+.title-news-banner {
+  font-family: "Oswald";
+  font-weight: 400;
+  font-size: 2.5em !important;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+  color: #f3f3f3;
+}
+
+@media (max-width: 595px) {
+  .title-news-banner {
+    font-size: 1.85em !important;
+  }
 }
 
 .title-service {
@@ -69,7 +84,7 @@ html, body {
 .subtitle-carousel {
   font-family: "Poppins";
   font-weight: 300;
-  font-size: 1.2em;
+  font-size: 1.1em;
   color: #f3f3f3;
 }
 
@@ -566,9 +581,8 @@ html, body {
   width: 18px !important;
 }
 
-.news-image {
+.news-banner-image {
   width: 100%;
-  height: 60vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -583,7 +597,7 @@ html, body {
   background-position: center;
 }
 
-.news-image .overlay {
+.news-banner-image .overlay {
   position: absolute;
   top: 0;
   right: 0;
@@ -597,14 +611,6 @@ html, body {
 .news-banner-content {
   position: relative;
   z-index: 10;
-}
-
-.text-news {
-  font-family: "Poppins";
-  font-weight: 400;
-  font-size: 0.9;
-  color: #333333;
-  white-space: pre-wrap;
 }
 
 /* Rodapé */

@@ -59,3 +59,23 @@ $('.owl-news').owlCarousel({
         }
     }
 });
+
+$('.owl-news-related').owlCarousel({
+    loop:false,
+    margin:30,
+    nav:false,
+    responsiveClass:true,
+    responsive:{
+        0:{
+            items:1,
+            stagePadding: 0
+        },
+        768:{
+            items: 2,
+            stagePadding: 0
+        },
+        991:{
+            items:2,
+        }
+    }
+});

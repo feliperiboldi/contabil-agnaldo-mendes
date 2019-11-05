@@ -15,11 +15,28 @@ html, body { margin: 0; padding: 0; }
     font: {
         family: $font-secondary;
         weight: 400;
-        size: 3.5em;
+        size: 3em;
     }
     text-transform: uppercase;
     letter-spacing: 7px;
     color: $color-1;
+}
+
+.title-news-banner {
+    font: {
+        family: $font-secondary;
+        weight: 400;
+        size: 2.5em !important;
+    }
+    text-transform: uppercase;
+    letter-spacing: 7px;
+    color: $color-1;
+}
+
+@media(max-width: 595px) {
+    .title-news-banner {
+        font-size: 1.85em !important;
+    }
 }
 
 .title-service {
@@ -88,7 +105,7 @@ html, body { margin: 0; padding: 0; }
     font: {
         family: $font-first;
         weight: 300;
-        size: 1.2em;
+        size: 1.1em;
     }
     color: $color-1;
 }
@@ -542,9 +559,8 @@ html, body { margin: 0; padding: 0; }
     width: 18px !important;
 }
 
-.news-image {
+.news-banner-image {
     width: 100%;
-    height: 60vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -552,8 +568,7 @@ html, body { margin: 0; padding: 0; }
     background-size: cover;
     background-position: center;
 }
-
-.news-image .overlay {
+.news-banner-image .overlay {
     position: absolute;
     top: 0;
     right: 0;
@@ -566,16 +581,6 @@ html, body { margin: 0; padding: 0; }
 .news-banner-content {
     position: relative;
     z-index: 10;
-}
-
-.text-news {
-    font: {
-        family: $font-first;
-        weight: 400;
-        size: 0.9; 
-    }
-    color: $color-4;
-    white-space: pre-wrap;
 }
 
 /* Rodapé */

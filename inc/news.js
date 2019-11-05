@@ -5,7 +5,7 @@ module.exports = {
     getNews() {
         return new Promise((resolve, reject) => {
             conn.query(`
-                SELECT tb_news.id, tb_news.title, tb_news.subtitle, tb_news.text, tb_news.photo , tb_users.NAME AS author 
+                SELECT tb_news.id, tb_news.title, tb_news.subtitle, tb_news.text, tb_news.photo, tb_users.name AS author 
                 FROM tb_news INNER JOIN tb_users ON tb_news.author = tb_users.id
                 ORDER BY title
             `, (err, results) => {
@@ -21,7 +21,7 @@ module.exports = {
     getNewsById(id) {
         return new Promise((resolve, reject) => {
             conn.query(`
-                SELECT tb_news.id, tb_news.title, tb_news.subtitle, tb_news.text, tb_news.photo , tb_users.NAME AS author 
+                SELECT tb_news.id, tb_news.title, tb_news.subtitle, tb_news.text, tb_news.photo, tb_news.register, tb_users.name AS author 
                 FROM tb_news INNER JOIN tb_users ON tb_news.author = tb_users.id
                 WHERE tb_news.id = ?;
             `, [
@@ -33,6 +33,22 @@ module.exports = {
                     resolve(results);
                 }
             })
+        });
+    },
+
+    getNewsRelated(id) {
+        return new Promise((resolve, reject) => {
+            conn.query(`
+                SELECT id, title, photo FROM tb_news WHERE NOT id = ?
+            `, [
+                id
+            ], (err, results) => {
+                if(err) {
+                    reject(err);
+                } else {
+                    resolve(results);
+                }
+            });
         });
     },
 
