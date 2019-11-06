@@ -7,12 +7,105 @@
                     <div class="overlay"></div>
                     <div class="container">
                         <div class="news-banner-content">
-                            <h1 class="title-news-banner text-center">
+                            <h1 class="title-news-banner">
                                 <%= row.title %>
                             </h1>
-                            <p class="subtitle-carousel text-center">
-                                <%= row.subtitle %>
-                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="news-content _pt50 _pb50">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="news-info">
+                                <div class="news-author">
+                                    <span>
+                                        Publicado por:&nbsp;
+                                        <a href="#" rel="author"><%= row.author %></a>
+                                    </span>
+                                </div>
+                                <div class="news-register">
+                                        <%
+                                            let register = row.register;
+                                            let year = register.getFullYear();
+                                            let month = register.getMonth() + 1;
+                                            let date = register.getDate();
+
+                                            if(month <= 9) {
+                                                month = '0' + month;
+                                            }
+
+                                            if(date <= 9) {
+                                                date = '0' + date;
+                                            }
+
+                                            register = date + '/' + month + '/' + year;
+                                        %>
+                                    <span>
+                                        <%= register %>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="news-content-wrapper _pt25">
+                                <p class="subtitle-news">
+                                    <%= row.subtitle %>
+                                </p>
+
+                                <img src="/<%= row.photo %>" alt="<%= row.title %>" class="img-fluid">
+
+                                <pre class="text-news _pt25">
+                                    <%= row.text %>
+                                </pre>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="news-related-desktop">
+                                <h2 class="title-section-1 title-news-related _pb40">Notícias <span>Relacionadas</span></h2>
+                                <% newsRelated.forEach((row) => { %>
+                                    <div class="item _pb25">
+                                        <a href="/noticias/<%= row.id %>" class="news-link">
+                                            <figure class="_mb10">
+                                                <div class="overlay">
+                                                    <i class="fa fa-plus-circle"></i>
+                                                </div>
+                                                <img src="/<%= row.photo %>" alt="<%= row.title %>">
+                                            </figure>
+                                            <div class="news-content">
+                                                <h3 class="title-news text-justify">
+                                                    <%= row.title %>
+                                                </h3>
+                                            </div>
+                                        </a>
+                                    </div>
+                                <% }); %>
+                            </div>
+
+                            <div class="news-related-mobile">
+                                <h2 class="title-section-1 _pb40">Notícias <span>Relacionadas</span></h2>
+                                <div class="owl-carousel owl-theme owl-news-related">
+                                    <% newsRelated.forEach((row) => { %>
+                                    <div class="item">
+                                        <a href="/noticias/<%= row.id %>" class="news-link">
+                                            <figure class="_mb10">
+                                                <div class="overlay">
+                                                    <i class="fa fa-plus-circle"></i>
+                                                </div>
+                                                <img src="/<%= row.photo %>" alt="<%= row.title %>">
+                                            </figure>
+                                            <div class="news-content">
+                                                <h3 class="title-news text-justify">
+                                                    <%= row.title %>
+                                                </h3>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <% }); %>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

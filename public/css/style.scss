@@ -26,17 +26,11 @@ html, body { margin: 0; padding: 0; }
     font: {
         family: $font-secondary;
         weight: 400;
-        size: 2.5em !important;
+        size: 2em !important;
     }
     text-transform: uppercase;
     letter-spacing: 7px;
     color: $color-1;
-}
-
-@media(max-width: 595px) {
-    .title-news-banner {
-        font-size: 1.85em !important;
-    }
 }
 
 .title-service {
@@ -68,6 +62,10 @@ html, body { margin: 0; padding: 0; }
     text-transform: uppercase;
     letter-spacing: 7px;
     color: $color-1;
+}
+
+.title-news-related {
+    font-size: 2.3em !important;
 }
 
 .title-footer {
@@ -561,6 +559,7 @@ html, body { margin: 0; padding: 0; }
 
 .news-banner-image {
     width: 100%;
+    height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -581,6 +580,71 @@ html, body { margin: 0; padding: 0; }
 .news-banner-content {
     position: relative;
     z-index: 10;
+}
+
+.news-info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.news-author span {
+    font: {
+        family: $font-first;
+        weight: 400;
+        size: 0.9em;
+    }
+    color: $color-4;
+}
+
+.news-author span a {
+    font-weight: 500;
+    color: $color-2;
+}
+
+.news-register span {
+    font: {
+        family: $font-first;
+        weight: 400;
+        size: 0.9em;
+    }
+    color: $color-4;
+}
+
+.text-news {
+    font: {
+        family: $font-first;
+        weight: 400;
+        size: 1em;
+    }
+    color: $color-4;
+    white-space: pre-wrap;
+}
+
+.news-related-mobile {
+    display: none;
+}
+
+@media(max-width: 991px) {
+    .news-related-desktop {
+        display: none;
+    }
+
+    .news-related-mobile {
+        display: block;
+    }
+}
+
+.owl-news-related .owl-dots .owl-dot span {
+    background-color: transparent !important;
+    border: 2px solid $color-2;
+}
+
+.owl-news-related .owl-dots .owl-dot.active span {
+    background-color: $color-2 !important;
+    transform: scale(1.2);
+    transition: all 0.3s ease-in-out;
+    width: 18px !important;
 }
 
 /* Rodapé */

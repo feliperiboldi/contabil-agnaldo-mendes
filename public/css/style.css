@@ -17,16 +17,10 @@ html, body {
 .title-news-banner {
   font-family: "Oswald";
   font-weight: 400;
-  font-size: 2.5em !important;
+  font-size: 2em !important;
   text-transform: uppercase;
   letter-spacing: 7px;
   color: #f3f3f3;
-}
-
-@media (max-width: 595px) {
-  .title-news-banner {
-    font-size: 1.85em !important;
-  }
 }
 
 .title-service {
@@ -52,6 +46,10 @@ html, body {
   text-transform: uppercase;
   letter-spacing: 7px;
   color: #f3f3f3;
+}
+
+.title-news-related {
+  font-size: 2.3em !important;
 }
 
 .title-footer {
@@ -583,6 +581,7 @@ html, body {
 
 .news-banner-image {
   width: 100%;
+  height: 400px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -611,6 +610,70 @@ html, body {
 .news-banner-content {
   position: relative;
   z-index: 10;
+}
+
+.news-info {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.news-author span {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 0.9em;
+  color: #333333;
+}
+
+.news-author span a {
+  font-weight: 500;
+  color: #008c74;
+}
+
+.news-register span {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 0.9em;
+  color: #333333;
+}
+
+.text-news {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 1em;
+  color: #333333;
+  white-space: pre-wrap;
+}
+
+.news-related-mobile {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .news-related-desktop {
+    display: none;
+  }
+  .news-related-mobile {
+    display: block;
+  }
+}
+
+.owl-news-related .owl-dots .owl-dot span {
+  background-color: transparent !important;
+  border: 2px solid #008c74;
+}
+
+.owl-news-related .owl-dots .owl-dot.active span {
+  background-color: #008c74 !important;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  width: 18px !important;
 }
 
 /* Rodapé */

@@ -39,7 +39,7 @@ module.exports = {
     getNewsRelated(id) {
         return new Promise((resolve, reject) => {
             conn.query(`
-                SELECT id, title, photo FROM tb_news WHERE NOT id = ?
+                SELECT id, title, photo FROM tb_news WHERE NOT id = ? ORDER BY register DESC LIMIT 3 
             `, [
                 id
             ], (err, results) => {
