@@ -3,7 +3,7 @@ if($(window).width() > 991) {
     $(window).resize(function () {
         $('.carousel-image').height($(window).height() - 0);
     });
-    } else {
+} else {
     $('.carousel-image').height($(window).height() - 0);
     $(window).resize(function () {
         $('.carousel-image').height($(window).height() - 0);
