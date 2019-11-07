@@ -136,6 +136,10 @@ html, body { margin: 0; padding: 0; scroll-behavior: smooth;}
 }
 
 /* Menu */
+.navbar {
+    padding: 0 !important;
+}
+
 .navbar-desk {
     display: none;
 }
@@ -156,6 +160,10 @@ html, body { margin: 0; padding: 0; scroll-behavior: smooth;}
     font-weight: 600;
 }
 
+.navbar-desk #brand-green {
+    display: none;
+}
+
 .navbar-desk-on-scroll {
     background-color: $color-6;
     box-shadow: 0px 2px 20px rgba(153, 153, 153, 0.4);
@@ -165,6 +173,14 @@ html, body { margin: 0; padding: 0; scroll-behavior: smooth;}
     font-size: 0.9em !important;
     color: $color-2 !important;
     transition: 0.4s;
+}
+
+.navbar-desk-on-scroll #brand-white {
+    display: none;
+}
+
+.navbar-desk-on-scroll #brand-green {
+    display: block;
 }
 
 @media(min-width: 992px) {
@@ -199,6 +215,10 @@ html, body { margin: 0; padding: 0; scroll-behavior: smooth;}
     .navbar-mobile {
         display: block;
     }
+}
+
+.navbar-brand img {
+    height: 60px !important;
 }
 
 /* Carousel */
@@ -559,7 +579,7 @@ html, body { margin: 0; padding: 0; scroll-behavior: smooth;}
 
 .news-banner-image {
     width: 100%;
-    height: 400px;
+    height: 430px;
     display: flex;
     justify-content: center;
     align-items: center;
