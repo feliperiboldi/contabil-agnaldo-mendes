@@ -38,10 +38,10 @@ app.set('view engine', 'ejs');
 // Middleware
 app.use(session({
   store: new RedisStore({
-    host: 'localhost',
-    port: 6379
+    host: 'edis-14258.c84.us-east-1-2.ec2.cloud.redislabs.com',
+    port: 14258
   }),
-  secret: 'p@ssw0rd',
+  secret: 'p@hYqQMfXfnLzKxcAP1xGsAJD4b7sNE8My',
   resave: true,
   saveUninitialized: true
 }));
