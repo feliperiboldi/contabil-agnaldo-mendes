@@ -30,29 +30,29 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.post('/login', function(req, res, next) {
-    if(!req.body.email) {
-        users.render(req, res, 'Preencha o campo e-mail.');
-    } else if(!req.body.password) {
-        users.render(req, res, 'Preencha o campo senha.');
-    } else {
-        users.login(req.body.email, req.body.password).then(user => {
-            req.session.user = user;
-            res.redirect('/admin');
-        }).catch(err => {
-            users.render(req, res, err.message || err);
-        })
-    }
-});
+// router.post('/login', function(req, res, next) {
+//     if(!req.body.email) {
+//         users.render(req, res, 'Preencha o campo e-mail.');
+//     } else if(!req.body.password) {
+//         users.render(req, res, 'Preencha o campo senha.');
+//     } else {
+//         users.login(req.body.email, req.body.password).then(user => {
+//             req.session.user = user;
+//             res.redirect('/admin');
+//         }).catch(err => {
+//             users.render(req, res, err.message || err);
+//         })
+//     }
+// });
 
-router.get('/login', function(req, res, next) {
-    users.render(req, res, null);
-});
+// router.get('/login', function(req, res, next) {
+//     users.render(req, res, null);
+// });
 
-router.get('/logout', function(req, res, next) {
-    delete req.session.user;
-    res.redirect('/admin/login');
-});
+// router.get('/logout', function(req, res, next) {
+//     delete req.session.user;
+//     res.redirect('/admin/login');
+// });
 
 router.post('/banners', function(req, res, next) {
     banners.save(req.fields, req.files).then(results => {
