@@ -36,15 +36,15 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // Middleware
-app.use(session({
-  store: new RedisStore({
-    host: 'redis-14258.c84.us-east-1-2.ec2.cloud.redislabs.com',
-    port: 14258
-  }),
-  secret: 'hYqQMfXfnLzKxcAP1xGsAJD4b7sNE8My',
-  resave: true,
-  saveUninitialized: true
-}));
+// app.use(session({
+//   store: new RedisStore({
+//     host: 'redis-14258.c84.us-east-1-2.ec2.cloud.redislabs.com',
+//     port: 14258
+//   }),
+//   secret: 'hYqQMfXfnLzKxcAP1xGsAJD4b7sNE8My',
+//   resave: true,
+//   saveUninitialized: true
+// }));
 
 app.use(logger('dev'));
 app.use(express.json());
