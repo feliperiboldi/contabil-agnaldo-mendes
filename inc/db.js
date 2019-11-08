@@ -1,9 +1,9 @@
 const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
+    host: 'mysql669.umbler.com',
+    user: 'sqluser',
+    password: 'Sqluserdba',
     database: 'contabil-site',
     multipleStatements: true
 });
