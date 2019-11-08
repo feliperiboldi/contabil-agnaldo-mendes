@@ -3,9 +3,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const session = require('express-session');
-const RedisStore = require('connect-redis')(session);
 const formidable = require('formidable');
+const cookieSession = require('cookie-session');
 
 const indexRouter = require('./routes/index');
 const adminRouter = require('./routes/admin');
@@ -36,15 +35,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // Middleware
-// app.use(session({
-//   store: new RedisStore({
-//     host: 'redis-14258.c84.us-east-1-2.ec2.cloud.redislabs.com',
-//     port: 14258
-//   }),
-//   secret: 'hYqQMfXfnLzKxcAP1xGsAJD4b7sNE8My',
-//   resave: true,
-//   saveUninitialized: true
-// }));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['p@ssw0rd']
+}));
 
 app.use(logger('dev'));
 app.use(express.json());
