@@ -7,13 +7,13 @@ const news = require('./../inc/news');
 const users = require('./../inc/users');
 const contacts = require('./../inc/contacts');
 
-router.use(function(req, res, next) {
-    if(['/login'].indexOf(req.url) === -1 && !req.session.user) {
-        res.redirect('/admin/login');
-    } else {
-        next();
-    }
-});
+// router.use(function(req, res, next) {
+//     if(['/login'].indexOf(req.url) === -1 && !req.session.user) {
+//         res.redirect('/admin/login');
+//     } else {
+//         next();
+//     }
+// });
 
 router.use(function(req, res, next) {
     req.menus = admin.getMenus(req);
