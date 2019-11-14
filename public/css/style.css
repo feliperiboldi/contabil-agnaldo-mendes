@@ -343,6 +343,7 @@ html, body {
   text-transform: uppercase;
   color: #008c74;
   margin-top: -4px;
+  display: block;
 }
 
 .icon-btn-services {
