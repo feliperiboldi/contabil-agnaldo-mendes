@@ -21,7 +21,7 @@ module.exports = {
             conn.query(`
             SELECT title AS bTitle, subtitle AS bSubtitle, href AS bHref, photo AS bPhoto FROM tb_banners ORDER BY title;
 
-            SELECT id AS nId, title AS nTitle, subtitle AS nSubtitle, photo AS nPhoto FROM tb_news ORDER BY register;
+            SELECT id AS nId, title AS nTitle, subtitle AS nSubtitle, photo AS nPhoto FROM tb_news ORDER BY register DESC;
             `, [1, 2], (err, results) => {
                 if(err) {
                     reject(err);
