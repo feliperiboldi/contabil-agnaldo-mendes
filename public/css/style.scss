@@ -2,7 +2,7 @@ $font-first: "Poppins";
 $font-secondary: "Oswald";
 
 $color-1: #f3f3f3;
-$color-2: #008c74;
+$color-2: #1768AC;
 $color-3: #cccccc;
 $color-4: #333333;
 $color-5: #f9fbfd;
@@ -160,7 +160,7 @@ html, body { margin: 0; padding: 0; scroll-behavior: smooth;}
     font-weight: 600;
 }
 
-.navbar-desk #brand-green {
+.navbar-desk #brand-blue {
     display: none;
 }
 
@@ -179,7 +179,7 @@ html, body { margin: 0; padding: 0; scroll-behavior: smooth;}
     display: none;
 }
 
-.navbar-desk-on-scroll #brand-green {
+.navbar-desk-on-scroll #brand-blue {
     display: block;
 }
 
@@ -239,7 +239,7 @@ html, body { margin: 0; padding: 0; scroll-behavior: smooth;}
     bottom: 0;
     left: 0;
     z-index: 1;
-    background: linear-gradient(to right, rgba(0, 140, 116, 0.75) 0%, rgba(0, 76, 102, 0.90) 100%);
+    background: linear-gradient(to right, rgba(37, 65, 178, 0.75) 0%, rgba(6, 190, 225, 0.90) 100%);
 }
 
 .carousel-content {
@@ -383,7 +383,7 @@ html, body { margin: 0; padding: 0; scroll-behavior: smooth;}
     right: 0;
     bottom: 0;
     left: 0;
-    background: linear-gradient(to right, rgba(0, 140, 116, 0.75) 0%, rgba(0, 76, 102, 0.90) 100%);
+    background: linear-gradient(to right, rgba(37, 65, 178, 0.75) 0%, rgba(6, 190, 225, 0.90) 100%);
     z-index: 1;
 }
 
@@ -539,7 +539,7 @@ html, body { margin: 0; padding: 0; scroll-behavior: smooth;}
     visibility: hidden;
     opacity: 0;
     z-index: 10;
-    background: linear-gradient(to right, rgba(0, 140, 116, 0.75) 0%, rgba(0, 76, 102, 0.90) 100%);
+    background: linear-gradient(to right, rgba(37, 65, 178, 0.75) 0%, rgba(6, 190, 225, 0.90) 100%);
     transition: 0.7s;
 }
 
