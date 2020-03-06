@@ -5,7 +5,7 @@ module.exports = {
     getBanners() {
         return new Promise((resolve, reject) => {
             conn.query(`
-                SELECT * FROM tb_banners ORDER BY title
+                SELECT * FROM tb_banners ORDER BY register
             `, (err, results) => {
                 if(err) {
                     reject(err);
@@ -23,7 +23,8 @@ module.exports = {
             let query, queryPhoto = '', params = [
                 fields.title,
                 fields.subtitle,
-                fields.href
+                fields.href,
+                fields.textButton
             ];
 
             if (files.photo.name) {
@@ -38,7 +39,8 @@ module.exports = {
                     UPDATE tb_banners
                     SET title = ?,
                         subtitle = ?,
-                        href = ?
+                        href = ?,
+                        textButton = ?
                         ${queryPhoto}
                     WHERE id = ?
                 `;
@@ -48,8 +50,8 @@ module.exports = {
                 }
 
                 query = `
-                    INSERT INTO tb_banners(title, subtitle, href, photo)
-                    VALUES (?, ?, ?, ?)
+                    INSERT INTO tb_banners(title, subtitle, href, textButton, photo)
+                    VALUES (?, ?, ?, ?, ?)
                 `;
             }
 

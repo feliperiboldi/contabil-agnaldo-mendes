@@ -31,6 +31,7 @@
                   <th>Título</th>
                   <th>Subtítulo</th>
                   <th>Link</th>
+                  <th>Texto do Botão</th>
                   <th style="min-width: 134px;">Ações</th>
                 </tr>
               </thead>
@@ -42,6 +43,7 @@
                   <td><%= row.title %></td>
                   <td><%= row.subtitle %></td>
                   <td><%= row.href %></td>
+                  <td><%= row.textButton %></td>
                   <td><button type="button" class="btn btn-xs btn-info btn-update"><i
                         class="fa fa-pencil"></i> Editar</button>&nbsp;<button type="button" class="btn btn-xs btn-danger btn-delete"><i
                         class="fa fa-trash"></i> Excluir</button></td>
@@ -74,12 +76,16 @@
                 <input type="text" class="form-control" id="inputTitleCreate" name="title">
               </div>
               <div class="form-group">
-                <label for="inputDescriptionCreate">Subtítulo</label>
+                <label for="inputSubtitleCreate">Subtítulo</label>
                 <textarea class="form-control" id="inputSubtitleCreate" name="subtitle"></textarea>
               </div>
               <div class="form-group">
-                <label for="inputPriceCreate">Link</label>
+                <label for="inputHrefCreate">Link</label>
                 <input type="text" class="form-control" id="inputHrefCreate" name="href">
+              </div>
+              <div class="form-group">
+                <label for="inputPriceCreate">Texto do Botão</label>
+                <input type="text" class="form-control" id="inputTextButtonCreate" name="textButton">
               </div>
               <div class="form-group">
                 <label for="inputPhotoCreate">Foto</label>
@@ -115,12 +121,16 @@
                 <input type="text" class="form-control" id="inputTitleUpdate" name="title">
               </div>
               <div class="form-group">
-                <label for="inputDescriptionUpdate">Subtítulo</label>
+                <label for="inputSubtitleUpdate">Subtítulo</label>
                 <textarea class="form-control" id="inputSubtitleUpdate" name="subtitle"></textarea>
               </div>
               <div class="form-group">
-                <label for="inputPriceUpdate">Link</label>
+                <label for="inputHrefUpdate">Link</label>
                 <input type="text" class="form-control" id="inputHrefUpdate" name="href">
+              </div>
+              <div class="form-group">
+                <label for="inputHrefUpdate">Texto do Botão</label>
+                <input type="text" class="form-control" id="inputTextButtonUpdate" name="textButton">
               </div>
               <div class="form-group">
                 <label for="inputPhotoUpdate">Foto</label>
